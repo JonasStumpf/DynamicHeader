@@ -1,0 +1,12 @@
+{
+  "name": "dynamic-header",
+  "version": "1.0.0",
+  "author": "Jonas Stumpf",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./build_scripts/build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.20.1"
+  }
+}

@@ -1,0 +1,61 @@
+::selection {
+    background: rgba(255, 255, 255, 0.3);
+    color: black;
+}
+
+body {
+    background: hsl(0, 0%, 10%);
+    min-height: 100vh;
+    margin: 0;
+    --color: black;
+    font-size: 30px;
+    font-family: monospace;
+}
+
+header {
+    --color: white;
+    text-align: center;
+    font-size: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 25px 0;
+    border-bottom: 1px solid white;
+    background: rgba(52, 113, 124, 0.767);
+    color: var(--color);
+    transition: transform 0.5s ease, font-size 0.5s ease, padding 0.5s ease, letter-spacing 0.5s ease;
+}
+
+
+section {
+    padding: 100px 10vw;
+    border-bottom: 2px solid white;
+    color: var(--color);
+    box-shadow: 0 0 10px 5px var(--color) inset;
+}
+section:last-child {
+    border: none;
+}
+
+.blue {
+    --color: rgb(131, 212, 206);
+}
+.red {
+    --color: rgb(155, 85, 4);
+}
+.green {
+    --color: rgb(101, 151, 54);
+}
+.purple {
+    --color: rgb(104, 48, 104);
+}
+.scroll-down {
+    padding: 0;
+}
+.dh-top {
+    font-size: 80px;
+}
+.top-vh {
+    letter-spacing: 0.25em;
+}
