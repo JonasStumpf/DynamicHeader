@@ -24,11 +24,17 @@ const dh = new DynamicHeader({
     }
 }, [
     Scroll,
-    Sections,
     Checkpoint,
     TestComponent
 ]);
 
+dh.on("section", (data)=>{
+    if (data.section.classList.contains("blue")) {
+        dh.getComponent("Sections").setClass("blue");
+    }
+});
+
+dh.mount([Sections]);
 
 /* dh.destroy(); */
 

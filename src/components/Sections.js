@@ -25,7 +25,7 @@ export class Sections extends Component {
      */
     init() {
         this.sections = [...getDOMElements(this.options.sections)];
-        this.#setClass(this.sections[0]);
+        this.#setSection(this.sections[0]);
         this.#createSectionObserver();
         this.dh.detectResize();
         this.dh.on("resize", ()=>this.#handleResize());
@@ -63,24 +63,28 @@ export class Sections extends Component {
                 section = this.sections[++nextSection];
             }
         }
-        this.#setClass(section);
+        this.#setSection(section);
     }
 
     /**
      * changes header class, dispatches event
      * @param {HTMLElement} section target section
      */
-    #setClass(section) {
+    #setSection(section) {
         if (!section) return;
         const evtData = {
             section: section,
             removed: this.currClass
         }
-        this.dh.removeClass(this.currClass);
-        this.currClass = section.getAttribute(this.dh.getPrefixed(this.options.dataName));
-        if (this.currClass) this.dh.addClass(this.currClass);
+        this.setClass(section.getAttribute(this.dh.getPrefixed(this.options.dataName)));
         evtData.added = this.currClass;
         this.dh.dispatch("section", evtData, [section]);
+    }
+
+    setClass(name) {
+        this.dh.removeClass(this.currClass);
+        this.dh.addClass(name);
+        this.currClass = name;
     }
 
     /**

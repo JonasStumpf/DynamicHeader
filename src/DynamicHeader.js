@@ -45,9 +45,9 @@ export class DynamicHeader {
         for (const component of components) {
             const c = new component();
             if (this.Components[c.getName()]) continue;
+            this.Components[c.getName()] = c;
             c.mount(this, this.#options[c.getName()]);
             c.init();
-            this.Components[c.getName()] = c;
         }
     }
 
@@ -98,6 +98,14 @@ export class DynamicHeader {
         if (index > -1) this.#headerClasses.splice(index, 1);
     }
 
+    /**
+     * returns the component
+     * @param {String} name component name
+     * @returns component
+     */
+    getComponent(name) {
+        return this.Components[name];
+    }
     /**
      * @returns header element
      */
