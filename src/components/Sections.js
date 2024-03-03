@@ -13,8 +13,7 @@ export class Sections extends Component {
     options = {
         sections: "section",
         obsRoot: null,
-        dataName: "section",
-        eventName: "section",
+        dataName: "section"
     }
     #Observer;
 
