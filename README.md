@@ -3,20 +3,21 @@ Change header based on scroll, sections and checkpoints.
 
 - [Get Started](#get-started)
 - [DynamicHeader](#dynamicheader)
-  - [Options](#options)
-  - [Event](#event)
+	- [Options](#options)
+	- [Event](#event)
 - [Events](#events)
 - [Components](#components)
-  - [Scroll](#scroll)
-    - [Options](#options-1)
-    - [Event](#event-1)
-  - [Checkpoint](#checkpoint)
-    - [Options](#options-2)
-    - [Event](#event-2)
-  - [Sections](#sections)
-    - [Options](#options-3)
-    - [Event](#event-3)
+	- [Scroll](#scroll)
+		- [Options](#options-1)
+		- [Event](#event-1)
+	- [Checkpoint](#checkpoint)
+		- [Options](#options-2)
+		- [Event](#event-2)
+	- [Sections](#sections)
+		- [Options](#options-3)
+		- [Event](#event-3)
 - [Create your own components](#create-your-own-components)
+	- [Example](#example)
 
 
 ## Get Started
@@ -225,4 +226,40 @@ Sets classes based on section header is above => based on background.
 
 ## Create your own components
 
-coming soon...
+When DH mounts Components it first calls `mount()`, this sets the options and the dh instance. You generally don't want to override this method.
+
+After that it calls `init()`, override this method to do setup stuff for your component.
+
+When `destroy()` is called on DH it calls `destroy()` on every component, override this method if you want/need to remove stuff setup by your component.  
+Classes added with `DH.addClass()` are automatically removed by DH when destroyed.
+
+> DH manages components by their classnames, it uses the property `#name` and the method `getName()`.  
+> Don't override these.
+
+### Example
+Import `Component`: 
+```
+import { DynamicHeader, Component } from "path/to/DynamicHeader.esm.js"; //esm
+const { DynamicHeader, Component } = DH; //iife
+```
+
+Create a class for your Component and extend it to `Component`:
+```
+class TestComponent extends Component {
+    options = {
+        testClass: "default-test-component-class"
+    }
+    init() {
+        this.dh.addClass(this.options.testClass);
+    }
+}
+```
+
+Add it to DH:
+```
+const dh = new DynamicHeader({
+    TestComponent: {
+        testClass: "test-component-class"
+    }
+}, [TestComponent]);
+```

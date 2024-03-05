@@ -5,8 +5,11 @@ import { DynamicHeader, Scroll, Sections, Checkpoint, Component } from "../dist/
 
 
 class TestComponent extends Component {
+    options = {
+        testClass: "default-test-component-class"
+    }
     init() {
-        this.dh.addClass("test-component-class");
+        this.dh.addClass(this.options.testClass);
     }
 }
 
@@ -21,6 +24,9 @@ const dh = new DynamicHeader({
             },
             "top"
         ]
+    },
+    TestComponent: {
+        testClass: "test-component-class"
     }
 }, [
     Scroll,
